@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="launcherTree">
+		<xs:complexType>
+            <xs:sequence minOccurs="0">
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="menu" type="menuType"/>
+					<xs:element name="launcher" type="launcherType"/>
+				</xs:choice>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="nodeType">
+        <xs:attribute name="id" type="xs:NCName" use="required"/>
+		<xs:attribute name="label" type="xs:string" use="required"/>
+		<xs:attribute name="iconURI" type="xs:string" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="menuType">
+		<xs:complexContent>
+			<xs:extension base="nodeType">
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="menu" type="menuType"/>
+					<xs:element name="launcher" type="launcherType"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="launcherType">
+		<xs:complexContent>
+			<xs:extension base="nodeType">
+				<xs:sequence>
+					<xs:element name="arg" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="antAddedEntries" type="antAddedEntriesType"/>
+					<xs:element name="refresh" type="refreshType"/>
+				</xs:sequence>
+				<xs:attribute name="confirmMessage" type="xs:string"/>
+				<xs:attribute name="launcherURI" type="xs:string"/>
+				<xs:attribute name="encoding" type="xs:NCName"/>
+	            <xs:attribute name="envType" type="envTypeEnum" default="java"/>
+		        <xs:attribute name="lastLaunched" type="xs:dateTime"/>
+		        <xs:attribute name="returnCode" type="xs:int"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="antAddedEntriesType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="path" type="xs:string"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="refreshType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="projectName" type="xs:string"/>
+		</xs:choice>
+	</xs:complexType>
+
+    <!-- ******************* -->
+    <!-- envType Enumeration -->
+    <!-- ******************* -->
+	<xs:simpleType name="envTypeEnum">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="java"/>
+            <xs:enumeration value="ant"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

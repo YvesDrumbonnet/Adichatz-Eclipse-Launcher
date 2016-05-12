@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<!-- ************************ -->
+	<!-- *   C O M M A N D S    * -->
+	<!-- ************************ -->
+	<extension point="org.eclipse.ui.commands">
+		<category id="org.adichatz.launcher.commands.category" name="Adichatz Launcher Category"/>
+		<command id="org.adichatz.launcher.launch.command" name="%runFromLauncher" categoryId="org.adichatz.launcher.commands.category"/>
+	</extension>
+
+	<!-- ************************ -->
+	<!-- *   H A N D L E R S    * -->
+	<!-- ************************ -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler class="org.adichatz.launcher.LauncherHandler" commandId="org.adichatz.launcher.launch.command"/>
+	</extension>
+
+	<!-- ********************************* -->
+	<!-- *   M E N U  &  T O O L B A R   * -->
+	<!-- ********************************* -->
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution allPopups="true" locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+			<toolbar id="org.adichatz.launcher.toolbar">
+            	<command commandId="org.adichatz.launcher.launch.command" icon="resources/icons/IMG_LAUNCHER.png" id="org.adichatz.launcher.toolbar.command.launch" style="pulldown" tooltip="%runLastLauncher"/>
+			</toolbar>
+		</menuContribution>
+		<menuContribution locationURI="menu:org.adichatz.launcher.toolbar.command.launch">
+			<dynamic class="org.adichatz.launcher.LaunchersContributionItems" id="menu:org.adichatz.launcher.launch.dynamic"/>
+      	</menuContribution>
+	</extension>
+
+	<!-- ******************* -->
+	<!-- *   E D I T O R   * -->
+	<!-- ******************* -->
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.adichatz.launcher.editor.LauncherFormEditor" icon="resources/icons/IMG_XJC_EDITOR.png" id="org.adichatz.launcher.editor.LauncherFormEditor" name="%launcher.editor"/>
+		<editor class="org.adichatz.launcher.editor.AdiXMLMultiPageEditorPart" icon="resources/icons/IMG_XJC_EDITOR.png" id="org.adichatz.launcher.editor.AdiXMLMultiPageEditorPart" name="%recent.launcher.editor"/>
+	</extension>
+
+  	<!-- ***************************** -->
+	<!-- *   P R E F E R E N C E S   * -->
+	<!-- ***************************** -->
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="org.adichatz.launcher.PreferenceInitializer"/>
+   </extension>
+	<extension point="org.eclipse.ui.preferencePages">
+ 		<page	id="org.adichatz.launcher.LauncherPreferences" name="%prefs.adichatz.launcher" class="org.adichatz.launcher.LauncherPreferences"/>
+	</extension>
+ </plugin>

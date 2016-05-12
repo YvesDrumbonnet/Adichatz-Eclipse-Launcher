@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Launcher
+Bundle-SymbolicName: org.adichatz.launcher; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.adichatz.launcher.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.apache.ant,
+ org.eclipse.ant.core,
+ org.eclipse.ant.ui,
+ org.eclipse.ant.launching,
+ org.eclipse.core.commands,
+ org.eclipse.core.externaltools,
+ org.eclipse.core.filesystem,
+ org.eclipse.core.resources,
+ org.eclipse.core.variables,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.launching,
+ org.eclipse.jface.text,
+ org.eclipse.osgi.util,
+ org.eclipse.swt,
+ org.eclipse.ui.console,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.forms,
+ org.eclipse.wst.sse.ui,
+ org.eclipse.wst.xml.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Comment: suprimer la dernière ligne
+Export-Package: org.adichatz.launcher
